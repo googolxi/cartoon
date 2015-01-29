@@ -37,7 +37,7 @@ class DevilSpider(scrapy.Spider):
         yield Request(eplist_url_patt,meta={'item':item},callback=self.parse_ep_list)
     def parse_ep_list(self,response):
         item = response.meta['item']
-        ep_list = response.css("div.textlists div.lists ul.items li")[:60]
+        ep_list = response.css("div.textlists div.lists ul.items li")[:52]
         #print ep_list
         print "world"
         ep_id = 1 
