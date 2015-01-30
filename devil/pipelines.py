@@ -24,7 +24,7 @@ class DevilPipeline(object):
     def __init__(self):
         self.dbpool = adbapi.ConnectionPool("MySQLdb",
                                             host="localhost",
-                                            db="ch4_comic",
+                                            db="ch4_comics",
                                             user="root",
                                             passwd="123",
                                             cursorclass=MySQLdb.cursors.DictCursor,

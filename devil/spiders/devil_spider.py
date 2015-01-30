@@ -24,7 +24,8 @@ class DevilSpider(scrapy.Spider):
         item['type'] = response.css("ul.params li.short span::text").extract()[1]
         item['pic'] = "http://v.youku.com/v_show/id_XNTE2NTg5ODU2.html"
         item['desc'] = response.css("div.detail div.intro::text").extract()[1]
-        item['hits'] = response.css("ul.stats li span::text").extract()[0]
+        #hit = response.css("ul.stats li span::text").extract()[0]
+        item['hits']  = 0
         item['ep_list'] = []
         ep_item = EpItem()
         #ep_item['src_type'] = 2
@@ -47,10 +48,11 @@ class DevilSpider(scrapy.Spider):
             ep_item['src_type'] = 1
             ep_item['org_url'] = ep.css("a::attr(href)").extract()[0]
             print "hello"
-            ep_item['key'] =  '/'.join(response.url.split('/')[-3:-2])
+            #ep_item['key'] = "youku"
             ep_item['ep_title'] = ep.css("a span.l_title::text").extract()[0]
             ep_item['ep'] = ep_id
             
+            ep_item['key'] = ep_id
             ep_id +=1
         
             item['ep_list'].append(ep_item)
