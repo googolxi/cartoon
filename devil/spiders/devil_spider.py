@@ -55,4 +55,7 @@ class DevilSpider(scrapy.Spider):
         
             item['ep_list'].append(ep_item)
             item['eps'] = len(item['ep_list'])
+        for i in ep_item['ep_title']:
+            print i
+
         return item
