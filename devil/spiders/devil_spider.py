@@ -47,7 +47,6 @@ class DevilSpider(scrapy.Spider):
         ep_two  = response.css("div.cont ul#fenji_1_asc  li")
         ep_three = response.css("div.cont ul#fenji_2_asc  li")
         ep_list = ep_one + ep_two + ep_three 
-        print ep_list
         ep_id  = 1
         print "jiong"
         for ep in ep_one:
@@ -58,8 +57,30 @@ class DevilSpider(scrapy.Spider):
             ep_item['key'] = '/'.join(response.url.split('/')[-3:-2])
             ep_item['ep'] = ep_id
             ep_id +=1
-            
+            print "hello" 
             item['ep_list'].append(ep_item)
             item['eps'] = len(item['ep_list'])
-             
+         for ep in ep_two:
+            ep_item = EpItem()
+            ep_item['src_type'] = 1
+            ep_item['org_url'] = ep.css("a::attr(href)").extract()[0]
+            ep_item['ep_title'] = ep.css("a::attr(title)").extract()[0]
+            ep_item['key'] = '/'.join(response.url.split('/')[-3:-2])
+            ep_item['ep'] = ep_id
+            ep_id +=1
+            print "hello" 
+            item['ep_list'].append(ep_item)
+            item['eps'] = len(item['ep_list'])
+          for ep in ep_three:
+            ep_item = EpItem()
+            ep_item['src_type'] = 1
+            ep_item['org_url'] = ep.css("a::attr(href)").extract()[0]
+            ep_item['ep_title'] = ep.css("a::attr(title)").extract()[0]
+            ep_item['key'] = '/'.join(response.url.split('/')[-3:-2])
+            ep_item['ep'] = ep_id
+            ep_id +=1
+            print "hello" 
+            item['ep_list'].append(ep_item)
+            item['eps'] = len(item['ep_list'])
+   
             return item
