@@ -32,7 +32,7 @@ class DevilSpider(scrapy.Spider):
         #ep_item['key'] = '/'.join(response.url.split('/')[-3:-1])
         #ep_item['ep_title'] = item['title'] 
         #ep_item['ep'] = 0
-        item['ep_list'].append(ep_item)
+        #item['ep_list'].append(ep_item)
         eplist_url_patt = 'http://v.youku.com/v_show/id_XNTE2NTg5ODU2.html'
         yield Request(eplist_url_patt,meta={'item':item},callback=self.parse_ep_list)
     def parse_ep_list(self,response):
@@ -55,7 +55,5 @@ class DevilSpider(scrapy.Spider):
         
             item['ep_list'].append(ep_item)
             item['eps'] = len(item['ep_list'])
-        for i in ep_item['ep_title']:
-            print i
 
         return item
